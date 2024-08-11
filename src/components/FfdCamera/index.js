@@ -33,7 +33,7 @@ const FfdCamera = () => {
       frameCount.current = 0;
     }, 1000);
 
-    // 清除定时器
+    // Clear the timer
     return () => clearInterval(interval);
   }, []);
 
@@ -58,7 +58,7 @@ const FfdCamera = () => {
     setIsStartCamButtonLoading(false);
   };
 
-  // 获取可用的视频设备列表
+  // Get the list of available video devices
   const getVideoDevices = async () => {
     const devices = await navigator.mediaDevices.enumerateDevices();
     const videoDevices = devices.filter(
@@ -67,12 +67,12 @@ const FfdCamera = () => {
     setDevices(videoDevices);
   };
 
-  // 切换相机设备
+  // Switch camera device
   const handleDeviceChange = (deviceId) => {
     setSelectedDevice(deviceId);
   };
 
-  // 开启摄像头
+  // Start the camera
   const startCamera = async () => {
     setIsStartCamButtonLoading(true);
     if (!loaded) {
@@ -86,7 +86,7 @@ const FfdCamera = () => {
     }
   };
 
-  // 停止摄像头
+  // Stop the camera
   const stopCamera = () => {
     if (detecterRunningFlag.current) {
       stopDetector();
@@ -103,7 +103,7 @@ const FfdCamera = () => {
     detecterRunningFlag.current = false;
   };
 
-  // 获取视频设备列表
+  // Get the list of video devices
   React.useEffect(() => {
     getVideoDevices();
   }, []);
@@ -118,7 +118,7 @@ const FfdCamera = () => {
       }}
     >
       <Select
-        placeholder="选择相机"
+        placeholder="Select Camera"
         style={{ width: "150px", marginBottom: 16 }}
         onChange={handleDeviceChange}
       >
@@ -136,10 +136,10 @@ const FfdCamera = () => {
         }}
       >
         <Button onClick={startCamera} loading={isStartCamButtonLoading}>
-          启动相机
+          Start Camera
         </Button>
         <Button onClick={stopCamera} style={{ marginLeft: 8 }}>
-          关闭相机
+          Stop Camera
         </Button>
       </div>
       <div
@@ -153,7 +153,6 @@ const FfdCamera = () => {
         {stream && (
           <Webcam
             style={{
-              visibility: "hidden",
               position: "absolute",
               top: "0",
               bottom: "0",
